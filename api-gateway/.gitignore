@@ -1,33 +1,157 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.dll
+*.exe
+*.o
+*.so
+*.dylib
+*.hprof
+*.swap
 
-### VS Code ###
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+### Gradle ###
+.gradle
+build/
+!gradle-wrapper.jar
+gradle-app.setting
+
+### Spring Boot ###
+/target/
+/build/
+
+### Log files ###
+*.log
+
+### Environment variables ###
+.env
+.env.*
+
+### System files ###
+.DS_Store
+Thumbs.db
+
+### IDE files ###
+*.swp
+*.swo
+*.tmp
+
+### OS-specific files ###
+# Windows
+*.bat
+*.cmd
+*.exe
+*.dll
+*.com
+*.drv
+*.sys
+*.obj
+*.bin
+*.lib
+*.msi
+*.rll
+*.ico
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+### Directory-based project format ###
+.idea/
+*.iml
+*.ipr
+
+### IntelliJ IDEA ###
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# AWS User-specific files
+.idea/**/aws.xml
+
+# Sensitive or high-churn files:
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+
+# Gradle:
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# Gradle and Maven with auto-import:
+.idea/**/misc.xml
+.idea/**/modules.xml
+.idea/**/modules
+.idea/**/compiler.xml
+.idea/**/deployment.xml
+.idea/**/artifacts
+
+# JIRA plugin:
+.idea/**/jira.xml
+
+# Cursive Clojure plugin:
+.idea/**/profiles.clj
+
+# Mongo Explorer plugin:
+.idea/**/mongoSettings.xml
+
+# File-based project format:
+*.iws
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+### OS generated files ###
+.DS_Store
+Thumbs.db
+
+### JRebel ###
+.rebel/
+
+### Visual Studio Code ###
 .vscode/
+
+### Logs ###
+logs/
+*.log
+*.log.*
+
+### Gradle ###
+.gradle/
+build/
+
+### Maven ###
+target/
+
+### Temp files ###
+*.swp
+*.swo
+*.tmp
