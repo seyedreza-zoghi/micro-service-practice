@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List; import java.util.Map;
 
-
 public interface GenericSpecifications<T> {
     default  <T> Specification<T> bySearchParams(Map<String, Object> searchParams) {
         return (Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
