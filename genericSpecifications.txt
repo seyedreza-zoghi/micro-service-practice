@@ -1,0 +1,59 @@
+package ir.arman.virtualcounter.component.search;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.ReflectionUtils;
+
+
+import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+
+public interface GenericSpecifications<T> {
+    default  <T> Specification<T> bySearchParams(Map<String, Object> searchParams) {
+        return (Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            searchParams.forEach((key, value) -> {
+                if (value != null && !value.toString().isEmpty()) {
+                    Field field = ReflectionUtils.findField(root.getJavaType(), key);
+                    if (field != null) {
+                        if (value instanceof String) {
+                            predicates.add(criteriaBuilder.like(root.get(key), "%" + value + "%"));
+                        } else if (value instanceof Boolean) {
+                            predicates.add(criteriaBuilder.equal(root.get(key), value));
+                        } else if (value instanceof LocalDateTime) {
+                            predicates.add(criteriaBuilder.greaterThan(root.get(key), (LocalDateTime) value));
+                        } else {
+                            predicates.add(criteriaBuilder.equal(root.get(key), value));
+                        }
+                    }
+                }
+            });
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+}
+
+
+--------------- repository ---------------
+@Repository
+public interface AccountToRoleRepository extends JpaRepository<AccountToRole, Long>, JpaSpecificationExecutor<AccountToRole>,GenericSpecifications<AccountToRole> {
+
+---------------- service -----------------
+    public List<AccountToRole> searchAccounts(String corporateCode, String ffIdentificationCode, String accountNumber, Boolean isEnabled, LocalDateTime expireDate) {
+        Map<String, Object> searchParams = new HashMap<>();
+        searchParams.put("corporateCode", corporateCode);
+        searchParams.put("ffIdentificationCode", ffIdentificationCode);
+        searchParams.put("ffAccountNumber", accountNumber);
+        searchParams.put("isEnabled", isEnabled);
+        searchParams.put("expireDate", expireDate);
+        return accountToRoleRepository.findAll(accountToRoleRepository.bySearchParams(searchParams));
+    }
