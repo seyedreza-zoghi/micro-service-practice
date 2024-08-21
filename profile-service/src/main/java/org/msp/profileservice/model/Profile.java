@@ -1,25 +1,24 @@
 package org.msp.profileservice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 @Entity
 @Table
 @Getter
 @Setter
 @NoArgsConstructor
-public class Profile implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Version
-    private Long version;
-    private String username;
-    private String password;
-
+public class Profile extends BaseEntity {
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String address;
+    private String city;
+    private String state;
+    private String postalCode;
+    private String country;
+    private String profilePictureUrl;
 }
