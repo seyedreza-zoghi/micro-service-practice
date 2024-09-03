@@ -80,6 +80,11 @@
             <version>1.5.5.Final</version> <!-- Use the latest stable version -->
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>msp</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
