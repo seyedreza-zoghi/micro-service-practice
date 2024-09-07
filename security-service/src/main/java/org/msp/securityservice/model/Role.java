@@ -8,28 +8,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import msp.core.model.GenericBaseEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "roles")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role extends GenericBaseEntity<Long> {
-    @Column(name = "name", nullable = false, unique = true)
+
     private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users = new ArrayList<>();
-
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "jtl_roles_permissions",
+            name = "permission_role",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id")
-    )
-    private List<Permissions> permissions = new ArrayList<>();
-
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+    private Set<Permissions> permissions;
 }
